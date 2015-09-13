@@ -30,7 +30,9 @@ class MongodbDatabase implements Database {
      * @return string
      */
     public function getDumpCommandLine($outputPath) {
-        return sprintf('mongodump --host %s:%s --username=%s --password=%s --db=%s --out %s',
+
+
+        return sprintf('mongodump --host %s:%s --username %s --password %s --db %s --out %s',
             escapeshellarg($this->config['host']),
             escapeshellarg($this->config['port']),
             escapeshellarg($this->config['user']),
@@ -47,7 +49,7 @@ class MongodbDatabase implements Database {
      */
     public function getRestoreCommandLine($inputPath) {
 
-        return sprintf('mongorestore --host %s:%s --username=%s --password=%s --db=%s  %s',
+        return sprintf('mongorestore --host %s:%s --username %s --password %s --db %s  %s',
             escapeshellarg($this->config['host']),
             escapeshellarg($this->config['port']),
             escapeshellarg($this->config['user']),
