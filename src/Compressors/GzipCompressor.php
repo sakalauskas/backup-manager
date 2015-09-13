@@ -19,7 +19,7 @@ class GzipCompressor extends Compressor {
      * @return string
      */
     public function getCompressCommandLine($inputPath) {
-        return 'gzip ' . escapeshellarg($inputPath);
+        return 'tar -zcvf ' . escapeshellarg($inputPath) .'.tar.gz ' . escapeshellarg($inputPath);
     }
 
     /**
@@ -27,7 +27,7 @@ class GzipCompressor extends Compressor {
      * @return string
      */
     public function getDecompressCommandLine($outputPath) {
-        return 'gunzip ' . escapeshellarg($outputPath);
+        return 'tar -zxvf ' . escapeshellarg($outputPath);
     }
 
     /**
@@ -35,7 +35,7 @@ class GzipCompressor extends Compressor {
      * @return string
      */
     public function getCompressedPath($inputPath) {
-        return $inputPath . '.gz';
+        return $inputPath . '.tar.gz';
     }
 
     /**
