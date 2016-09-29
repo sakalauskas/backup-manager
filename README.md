@@ -1,20 +1,21 @@
-> **Note:** 1.0 is brand new. The Laravel driver has been removed from this repository and moved [to its own repository](http://github.com/backup-manager/laravel). Instructions for installing and configuring it can be found there. 
-
 # Database Backup Manager 1.0
 
 [![Latest Stable Version](https://poser.pugx.org/backup-manager/backup-manager/version.png)](https://packagist.org/packages/backup-manager/backup-manager)
 [![License](https://poser.pugx.org/backup-manager/backup-manager/license.png)](https://packagist.org/packages/backup-manager/backup-manager)
 [![Build Status](https://travis-ci.org/backup-manager/backup-manager.svg?branch=master)](https://travis-ci.org/backup-manager/backup-manager)
-[![Coverage Status](https://coveralls.io/repos/backup-manager/backup-manager/badge.png?branch=master)](https://coveralls.io/r/backup-manager/backup-manager?branch=master)
+[![Coverage Status](https://coveralls.io/repos/backup-manager/backup-manager/badge.svg?branch=master&service=github)](https://coveralls.io/github/backup-manager/backup-manager?branch=master)
 [![Total Downloads](https://poser.pugx.org/backup-manager/backup-manager/downloads.png)](https://packagist.org/packages/backup-manager/backup-manager)
+
+This package provides a framework-agnostic database backup manager for dumping to and restoring databases from S3, Dropbox, FTP, SFTP, and Rackspace Cloud.
+
+[Watch a video tour](https://www.youtube.com/watch?v=vWXy0R8OavM) showing the Laravel driver in action to give you an idea what is possible.
 
 - supports `MySQL` and `PostgreSQL`
 - compress with `Gzip`
 - framework-agnostic
 - dead simple configuration
 - [Laravel Driver](http://github.com/backup-manager/laravel)
-
-This package is completely framework agnostic. Mitchell has put together a [video tour](https://www.youtube.com/watch?v=vWXy0R8OavM) of Laravel integration, to give you an idea what is possible with this package.
+- [Symfony Driver](http://github.com/backup-manager/symfony)
 
 ### Table of Contents
 
@@ -70,6 +71,14 @@ This package is actively being developed and we would like to get feedback to im
     'key'    => '',
     'secret' => '',
     'region' => 'us-east-1',
+    'version' => 'latest',
+    'bucket' => '',
+    'root'   => '',
+],
+'gcs' => [
+    'type' => 'Gcs',
+    'key'    => '',
+    'secret' => '',
     'version' => 'latest',
     'bucket' => '',
     'root'   => '',
@@ -153,8 +162,8 @@ composer require backup-manager/backup-manager
 Then, you'll need to select the appropriate packages for the adapters that you want to use.
 
 ```shell
-# to support s3
-composer require league/flysystem-aws-s3-v2
+# to support s3 or google cs
+composer require league/flysystem-aws-s3-v3
 
 # to support dropbox
 composer require league/flysystem-dropbox
@@ -189,7 +198,7 @@ When contributing please consider the following guidelines:
 
 ### Maintainers
 
-This package is maintained by [Shawn McCool](http://shawnmc.cool), [Mitchell van Wijngaarden](http://kooding.nl), and Graham Campbell.
+This package is maintained by [Shawn McCool](http://shawnmc.cool), [Mitchell van Wijngaarden](http://blog.mitchellvanw.io), and you!
 
 ### License
 
