@@ -27,6 +27,18 @@ class DeleteFile implements Task {
      * @return bool
      */
     public function execute() {
-        return $this->filesystem->delete($this->filePath);
+        if ($this->filesystem->getMimetype($this->filePath) == 'application/x-gzip') {
+
+            if ($this->filesystem->getMimetype(str_replace('.tar.gz', '', $this->filePath)) == 'directory') {
+                $this->filesystem->deleteDir(str_replace('.tar.gz', '', $this->filePath));
+            }
+        }
+
+        if ($this->filesystem->getMimetype($this->filePath) == 'directory') {
+            return $this->filesystem->deleteDir($this->filePath);
+
+        } else {
+            return $this->filesystem->delete($this->filePath);
+        }
     }
 }
